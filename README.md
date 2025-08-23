@@ -121,13 +121,6 @@ Jalankan test:
 npm test
 ```
 
-Coverage:
-
-```bash
-npm run test:coverage
-# laporan HTML: ./coverage/index.html
-```
-
 Cakupan MVP:
 
 - Badge: smoke test
