@@ -119,8 +119,6 @@ Jalankan test:
 
 ```bash
 npm test
-# atau
-npm run test:ci
 ```
 
 Coverage:
