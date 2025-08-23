@@ -110,8 +110,6 @@ Konvensi:
 - `build` — build bundle produksi
 - `preview` — preview hasil build
 - `test` — jalankan test mode watch
-- `test:ci` — jalankan test one-shot (headless)
-- `test:coverage` — jalankan test dengan laporan coverage
 
 ## Testing
 
