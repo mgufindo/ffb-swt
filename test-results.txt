@@ -1,0 +1,812 @@
+
+ RUN  v3.2.4 /Users/muhammadgufindo/ffb-fleet-management
+
+ ✓ src/components/atoms/__tests__/Badge.test.tsx (6 tests) 44ms
+stdout | src/components/molecules/__tests__/TripForm.tsx > TripForm > disables submit and shows warning when over capacity
+[36m<div[39m
+  [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+  [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+[36m/>[39m
+
+ ❯ src/components/molecules/__tests__/TripForm.tsx (6 tests | 5 failed) 2242ms
+   × TripForm > renders and allows vehicle selection 92ms
+     → Unable to find an element with the display value: /B1234XYZ/.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"relative bg-white rounded-lg shadow-xl max-w-3xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+        [36m>[39m
+          [0mPlan New Trip[0m
+        [36m</h2>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"vehicle-select"[39m
+            [36m>[39m
+              [0mVehicle[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"vehicle-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a vehicle[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+              [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"scheduled-date"[39m
+              [36m>[39m
+                [0mScheduled Date & Time[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"scheduled-date"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"datetime-local"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"estimated-duration"[39m
+              [36m>[39m
+                [0mEstimated Duration (minutes)[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"estimated-duration"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"status-select"[39m
+            [36m>[39m
+              [0mStatus[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"status-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SCHEDULED"[39m
+              [36m>[39m
+                [0mScheduled[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"IN_PROGRESS"[39m
+              [36m>[39m
+                [0mIn Progress[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COMPLETED"[39m
+              [36m>[39m
+                [0mCompleted[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"CANCELLED"[39m
+              [36m>[39m
+                [0mCancelled[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"client-select"[39m
+            [36m>[39m
+              [0mClient[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"[39m
+              [33mid[39m=[32m"client-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a client[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex justify-end space-x-3 pt-4"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mCancel[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"[39m
+              [33mtype[39m=[32m"submit"[39m
+            [36m>[39m
+              [0mCreate[0m
+              [0m Trip[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   × TripForm > allows mill selection and weight input 1031ms
+     → Unable to find an element with the text: /Palm Mill A/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"relative bg-white rounded-lg shadow-xl max-w-3xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+        [36m>[39m
+          [0mPlan New Trip[0m
+        [36m</h2>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"vehicle-select"[39m
+            [36m>[39m
+              [0mVehicle[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"vehicle-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a vehicle[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+              [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"scheduled-date"[39m
+              [36m>[39m
+                [0mScheduled Date & Time[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"scheduled-date"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"datetime-local"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"estimated-duration"[39m
+              [36m>[39m
+                [0mEstimated Duration (minutes)[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"estimated-duration"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"status-select"[39m
+            [36m>[39m
+              [0mStatus[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"status-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SCHEDULED"[39m
+              [36m>[39m
+                [0mScheduled[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"IN_PROGRESS"[39m
+              [36m>[39m
+                [0mIn Progress[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COMPLETED"[39m
+              [36m>[39m
+                [0mCompleted[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"CANCELLED"[39m
+              [36m>[39m
+                [0mCancelled[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"client-select"[39m
+            [36m>[39m
+              [0mClient[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"[39m
+              [33mid[39m=[32m"client-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a client[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex justify-end space-x-3 pt-4"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mCancel[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"[39m
+              [33mtype[39m=[32m"submit"[39m
+            [36m>[39m
+              [0mCreate[0m
+              [0m Trip[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"relative bg-white rounded-lg shadow-xl max-w-3xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+        [36m>[39m
+          [0mPlan New Trip[0m
+        [36m</h2>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"vehicle-select"[39m
+            [36m>[39m
+              [0mVehicle[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"vehicle-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a vehicle[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+              [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"scheduled-date"[39m
+              [36m>[39m
+                [0mScheduled Date & Time[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"scheduled-date"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"datetime-local"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"estimated-duration"[39m
+              [36m>[39m
+                [0mEstimated Duration (minutes)[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"estimated-duration"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"status-select"[39m
+            [36m>[39m
+              [0mStatus[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"status-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SCHEDULED"[39m
+              [36m>[39m
+                [0mScheduled[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"IN_PROGRESS"[39m
+              [36m>[39m
+                [0mIn Progress[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COMPLETED"[39m
+              [36m>[39m
+                [0mCompleted[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"CANCELLED"[39m
+              [36m>[39m
+                [0mCancelled[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"client-select"[39m
+            [36m>[39m
+              [0mClient[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"[39m
+              [33mid[39m=[32m"client-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a client[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex justify-end space-x-3 pt-4"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mCancel[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"[39m
+              [33mtype[39m=[32m"submit"[39m
+            [36m>[39m
+              [0mCreate[0m
+              [0m Trip[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   × TripForm > calls onSubmit with correct data 23ms
+     → Unable to find an accessible element with the role "checkbox"
+
+There are no accessible roles. But there might be some inaccessible roles. If you wish to access them, then set the `hidden` option to `true`. Learn more about this here: https://testing-library.com/docs/dom-testing-library/api-queries#byrole
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+  [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+[36m/>[39m
+   × TripForm > shows error if vehicle not selected or no mill selected 1019ms
+     → Unable to find an element with the text: /Please select a vehicle and at least one mill/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"relative bg-white rounded-lg shadow-xl max-w-3xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+        [36m>[39m
+          [0mPlan New Trip[0m
+        [36m</h2>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"vehicle-select"[39m
+            [36m>[39m
+              [0mVehicle[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"vehicle-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a vehicle[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+              [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"scheduled-date"[39m
+              [36m>[39m
+                [0mScheduled Date & Time[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"scheduled-date"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"datetime-local"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"estimated-duration"[39m
+              [36m>[39m
+                [0mEstimated Duration (minutes)[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"estimated-duration"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"status-select"[39m
+            [36m>[39m
+              [0mStatus[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+              [33mid[39m=[32m"status-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SCHEDULED"[39m
+              [36m>[39m
+                [0mScheduled[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"IN_PROGRESS"[39m
+              [36m>[39m
+                [0mIn Progress[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COMPLETED"[39m
+              [36m>[39m
+                [0mCompleted[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"CANCELLED"[39m
+              [36m>[39m
+                [0mCancelled[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+              [33mfor[39m=[32m"client-select"[39m
+            [36m>[39m
+              [0mClient[0m
+            [36m</label>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"[39m
+              [33mid[39m=[32m"client-select"[39m
+              [33mrequired[39m=[32m""[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mSelect a client[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex justify-end space-x-3 pt-4"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mCancel[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"[39m
+              [33mtype[39m=[32m"submit"[39m
+            [36m>[39m
+              [0mCreate[0m
+              [0m Trip[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"relative bg-white rounded-lg shadow-xl max-w-3xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto"[39m
+        [36m>[39m
+          [36m<h2[39m
+            [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+          [36m>[39m
+            [0mPlan New Trip[0m
+          [36m</h2>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"space-y-4"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"vehicle-select"[39m
+              [36m>[39m
+                [0mVehicle[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"vehicle-select"[39m
+                [33mrequired[39m=[32m""[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m>[39m
+                  [0mSelect a vehicle[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+                [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+              [36m/>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid grid-cols-1 md:grid-cols-2 gap-4"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                  [33mfor[39m=[32m"scheduled-date"[39m
+                [36m>[39m
+                  [0mScheduled Date & Time[0m
+                [36m</label>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                  [33mid[39m=[32m"scheduled-date"[39m
+                  [33mrequired[39m=[32m""[39m
+                  [33mtype[39m=[32m"datetime-local"[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m/>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                  [33mfor[39m=[32m"estimated-duration"[39m
+                [36m>[39m
+                  [0mEstimated Duration (minutes)[0m
+                [36m</label>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                  [33mid[39m=[32m"estimated-duration"[39m
+                  [33mmin[39m=[32m"1"[39m
+                  [33mrequired[39m=[32m""[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"status-select"[39m
+              [36m>[39m
+                [0mStatus[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md"[39m
+                [33mid[39m=[32m"status-select"[39m
+                [33mrequired[39m=[32m""[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SCHEDULED"[39m
+                [36m>[39m
+                  [0mScheduled[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"IN_PROGRESS"[39m
+                [36m>[39m
+                  [0mIn Progress[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"COMPLETED"[39m
+                [36m>[39m
+                  [0mCompleted[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CANCELLED"[39m
+                [36m>[39m
+                  [0mCancelled[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"block text-sm font-medium text-gray-700 mb-1"[39m
+                [33mfor[39m=[32m"client-select"[39m
+              [36m>[39m
+                [0mClient[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"[39m
+                [33mid[39m=[32m"client-select"[39m
+                [33mrequired[39m=[32m""[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m>[39m
+                  [0mSelect a client[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex justify-end space-x-3 pt-4"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mCancel[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0mCreate[0m
+                [0m Trip[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</form>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   × TripForm > disables submit and shows warning when over capacity 19ms
+     → Unable to find an accessible element with the role "checkbox"
+
+There are no accessible roles. But there might be some inaccessible roles. If you wish to access them, then set the `hidden` option to `true`. Learn more about this here: https://testing-library.com/docs/dom-testing-library/api-queries#byrole
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33mclass[39m=[32m"grid grid-cols-1 gap-3 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-md"[39m
+  [33mdata-testid[39m=[32m"mill-checkbox-grid"[39m
+[36m/>[39m
+   ✓ TripForm > calls onCancel when cancel button clicked 56ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 failed | 7 passed (12)
+   Start at  12:53:01
+   Duration  3.75s (transform 151ms, setup 173ms, collect 318ms, tests 2.29s, environment 835ms, prepare 148ms)
+

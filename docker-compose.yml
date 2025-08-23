@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    container_name: ffb-fleet-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      # Polling agar file-watching stabil di Docker (WSL/VM)
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      # Mount source code untuk HMR
+      - .:/app
+      # Pastikan node_modules dari image tidak tertimpa oleh bind mount
+      - /app/node_modules
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    # Paksa Vite bind ke 0.0.0.0 dan port 3000
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
