@@ -1,0 +1,29 @@
+
+> ffb-fleet-management@0.0.0 test
+> vitest
+
+
+ DEV  v3.2.4 /Users/muhammadgufindo/ffb-fleet-management
+
+ ✓ src/components/pages/__test__/Login.test.tsx (2 tests) 259ms
+ ✓ src/components/atoms/__tests__/Pagination.test.tsx (8 tests) 461ms
+ ✓ src/components/molecules/__tests__/DriverForm.test.tsx (6 tests) 865ms
+   ✓ DriverForm > renders creation form for client (non-admin) without client selector, submits with userId from auth  392ms
+   ✓ DriverForm > renders client selector for admin, loads clients, and submits with selected clientId  339ms
+ ✓ src/components/atoms/__tests__/SearchBar.test.tsx (5 tests) 251ms
+ ✓ src/components/atoms/__tests__/ConfirmModal.test.tsx (7 tests) 256ms
+ ✓ src/components/molecules/__tests__/DataTable.test.tsx (5 tests) 2003ms
+   ✓ DataTable > renders 10k rows under 2 seconds  1912ms
+ ✓ src/components/molecules/__tests__/DriverCard.test.tsx (7 tests) 212ms
+ ✓ src/components/atoms/__tests__/ProtectedRoute.test.tsx (6 tests) 153ms
+ ✓ src/components/molecules/__tests__/TripForm.test.tsx (1 test) 158ms
+ ✓ src/components/atoms/__tests__/Badge.test.tsx (6 tests) 81ms
+ ✓ src/components/atoms/__tests__/LoadingSpinner.test.tsx (4 tests) 47ms
+
+ Test Files  11 passed (11)
+      Tests  57 passed (57)
+   Start at  08:33:21
+   Duration  5.45s (transform 431ms, setup 1.28s, collect 2.27s, tests 4.75s, environment 7.52s, prepare 2.78s)
+
+ PASS  Waiting for file changes...
+       press h to show help, press q to quit
