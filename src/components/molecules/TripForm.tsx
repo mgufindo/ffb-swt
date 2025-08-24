@@ -53,7 +53,7 @@ const TripForm: React.FC<TripFormProps> = ({ trip, onSubmit, onCancel }) => {
   const [loading, setLoading] = useState(false);
   const [clientId, setClientId] = useState(trip?.userId || "");
   const [clients, setClients] = useState<User[]>([]);
-  const [estimatedTrips, setEstimatedTrips] = useState(1);
+  const [estimatedTrips, setEstimatedTrips] = useState<any>(1);
 
   useEffect(() => {
     loadData();
@@ -229,15 +229,21 @@ const TripForm: React.FC<TripFormProps> = ({ trip, onSubmit, onCancel }) => {
               <div className="mb-3 space-y-2">
                 {/* Trip Estimation */}
                 <div className="p-2 bg-yellow-50 text-yellow-800 rounded-md">
-                  <p className="text-sm">
-                    Estimated trips needed: <strong>{estimatedTrips}</strong>
-                    {estimatedTrips > 1 && (
+                  {estimatedTrips != "Infinity" ? (
+                    <>
+                      <span>Estimated trips needed: </span>
+                      <strong>{estimatedTrips}</strong>
                       <span className="ml-2">
                         (Consider splitting into multiple trips or selecting a
                         larger vehicle)
                       </span>
-                    )}
-                  </p>
+                    </>
+                  ) : (
+                    <span>
+                      Estimated trips needed: Please enter the estimated weight
+                      first
+                    </span>
+                  )}
                 </div>
               </div>
             )}
@@ -394,6 +400,12 @@ const TripForm: React.FC<TripFormProps> = ({ trip, onSubmit, onCancel }) => {
             </div>
           )}
 
+          {isOverCapacity && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              <strong>Warning!</strong> Total weight exceeds vehicle capacity.
+              Please reduce the weight or select a different vehicle.
+            </div>
+          )}
           <div className="flex justify-end space-x-3 pt-4">
             <button
               type="button"
@@ -414,13 +426,6 @@ const TripForm: React.FC<TripFormProps> = ({ trip, onSubmit, onCancel }) => {
               {trip ? "Update" : "Create"} Trip
             </button>
           </div>
-
-          {isOverCapacity && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-              <strong>Warning!</strong> Total weight exceeds vehicle capacity.
-              Please reduce the weight or select a different vehicle.
-            </div>
-          )}
         </form>
       </div>
     </div>

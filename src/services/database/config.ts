@@ -102,7 +102,7 @@ const initializeSchema = (): void => {
       plateNumber TEXT NOT NULL,
       type TEXT NOT NULL CHECK(type IN ('TRUCK', 'VAN', 'PICKUP')),
       capacity REAL NOT NULL,
-      driverId TEXT NOT NULL,
+      driverId TEXT,
       status TEXT NOT NULL CHECK(status IN ('AVAILABLE', 'IN_USE', 'MAINTENANCE', 'UNAVAILABLE')),
       userId TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

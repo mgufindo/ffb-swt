@@ -4,7 +4,7 @@ import { User } from '../../../types';
 
 export const getUserByEmail = (email: string): User | null => {
   const db = getDatabase();
-  const stmt = db.prepare(`SELECT id, email, name, role, millId, password FROM users WHERE email = ?`);
+  const stmt = db.prepare(`SELECT id, email, name, role, password FROM users WHERE email = ?`);
   const user = stmt.get([email]) as any;
 
   return user ? { 
@@ -12,7 +12,6 @@ export const getUserByEmail = (email: string): User | null => {
     email: user[1],
     name: user[2],
     role: user[3],
-    millId: user[4],
     password: user[5],
   } : null;
 };
@@ -35,7 +34,7 @@ export const createUser = (user: Omit<User, 'id'>): string => {
     VALUES (?, ?, ?, ?, ?, ?)
   `);
   
-  stmt.run([id, user.email, user.name, user.role, user.millId, user.password]);
+  stmt.run([id, user.email, user.name, user.role, user.password]);
   return id;
 };
 
