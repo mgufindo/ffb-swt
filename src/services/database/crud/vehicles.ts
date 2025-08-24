@@ -3,31 +3,60 @@ import { getDatabase } from '../config';
 import { Vehicle, VehicleType, VehicleStatus } from '../../../types';
 import { v4 as uuidv4 } from 'uuid';
 
-export const getVehicles = (limit = 100, offset = 0, userId = ''): Vehicle[] => {
+export const getVehicles = (
+  limit = 100,
+  offset = 0,
+  userId = "",
+  search = ""
+): Vehicle[] => {
   const db = getDatabase();
 
   let query = `
-    SELECT v.*, 
-           d.id as driverId, 
-           d.name as driverName, 
-           d.licenseNumber, 
-           d.phoneNumber, 
-           d.status as driverStatus,
-           u.name as userName,
-           u.id as userId
+    SELECT 
+      v.*,
+      d.id AS driverId,
+      d.name AS driverName,
+      d.licenseNumber,
+      d.phoneNumber,
+      d.status AS driverStatus,
+      d.userId AS driverUserId,
+      u.name AS userName,
+      u.id AS userId
     FROM vehicles v
     JOIN drivers d ON v.driverId = d.id
     JOIN users u ON v.userId = u.id
   `;
 
   const params: any[] = [];
+  const conditions: string[] = [];
 
-  if (userId && userId.trim() !== '') {
-    query += ` WHERE v.userId = ? `;
+  // Filter by userId if provided
+  if (userId && userId.trim() !== "") {
+    conditions.push(`v.userId = ?`);
     params.push(userId);
   }
 
-  query += ` LIMIT ? OFFSET ? `;
+  // Free-text search across several columns
+  const q = search.trim();
+  if (q !== "") {
+    const like = `%${q}%`;
+    conditions.push(`
+      (
+        LOWER(v.plateNumber) LIKE LOWER(?) OR
+        LOWER(v.type)        LIKE LOWER(?) OR
+        LOWER(d.name)        LIKE LOWER(?) OR
+        LOWER(d.phoneNumber) LIKE LOWER(?) OR
+        LOWER(u.name)        LIKE LOWER(?)
+      )
+    `);
+    params.push(like, like, like, like, like);
+  }
+
+  if (conditions.length > 0) {
+    query += ` WHERE ${conditions.join(" AND ")} `;
+  }
+
+  query += ` ORDER BY v.plateNumber ASC LIMIT ? OFFSET ? `;
   params.push(limit, offset);
 
   const stmt = db.prepare(query);
@@ -50,9 +79,9 @@ export const getVehicles = (limit = 100, offset = 0, userId = ''): Vehicle[] => 
         licenseNumber: row.licenseNumber,
         phoneNumber: row.phoneNumber,
         status: row.driverStatus as any,
-        userId: row.driverUserId
+        userId: row.driverUserId,
       },
-      status: row.status as VehicleStatus
+      status: row.status as VehicleStatus,
     });
   }
 
@@ -159,7 +188,7 @@ export const updateVehicle = (id: string, vehicle: Partial<Omit<Vehicle, 'id'>>)
     WHERE id = ?
   `);
   
-  const result = stmt.run(...values, id);
+  const result = stmt.run([...values, id]);
   return result.changes > 0;
 };
 

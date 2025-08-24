@@ -22,6 +22,7 @@ const DriverManagement: React.FC = () => {
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingDriver, setEditingDriver] = useState<Driver | null>(null);
+  const [totalDriver, setTotalDriver] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -50,6 +51,7 @@ const DriverManagement: React.FC = () => {
       );
 
       setDrivers(response.data);
+      setTotalDriver(response.total);
       setTotalPages(Math.ceil(response.total / itemsPerPage));
       setError("");
     } catch (err: any) {
@@ -314,7 +316,7 @@ const DriverManagement: React.FC = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Drivers</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+              <p className="text-2xl font-bold text-gray-900">{totalDriver}</p>
             </div>
           </div>
         </div>

@@ -23,6 +23,7 @@ const FleetOverview: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingVehicle, setEditingVehicle] = useState<Vehicle | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalVehicles, setTotalVehicles] = useState<number | null>(null);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<{
@@ -43,7 +44,12 @@ const FleetOverview: React.FC = () => {
       setLoading(true);
       const userId = user?.role === "client" ? user.id : undefined;
 
-      const response = await fetchVehicles(currentPage, itemsPerPage, userId);
+      const response = await fetchVehicles(
+        currentPage,
+        itemsPerPage,
+        searchTerm,
+        userId
+      );
 
       let filteredVehicles = response.data;
       if (searchTerm) {
@@ -59,6 +65,7 @@ const FleetOverview: React.FC = () => {
         );
       }
 
+      setTotalVehicles(response.total);
       setVehicles(filteredVehicles);
       setTotalPages(Math.ceil(response.total / itemsPerPage));
     } catch (err: any) {
@@ -314,7 +321,7 @@ const FleetOverview: React.FC = () => {
                 Total Vehicles
               </p>
               <p className="text-2xl font-bold text-gray-900">
-                {vehicles.length}
+                {totalVehicles}
               </p>
             </div>
           </div>

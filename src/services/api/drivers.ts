@@ -21,6 +21,8 @@ export const fetchDrivers = async (
     const data = getDrivers(limit, offset, userId, searchTerm, status);
     const total = getDriversCount(searchTerm, userId);
     
+    console.log(total);
+    
     return { data, total };
   } catch (error) {
     console.error('Error fetching drivers:', error);

@@ -51,7 +51,6 @@ export const getAllClients = (): User[] => {
       email: row.email !== null ? String(row.email) : '',
       name: row.name !== null ? String(row.name) : '',
       role: row.role !== null ? (row.role as 'admin' | 'client') : 'client',
-      millId: row.millId !== null ? String(row.millId) : undefined,
     });
   }
 

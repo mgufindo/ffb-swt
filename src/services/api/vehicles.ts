@@ -1,7 +1,6 @@
 // src/services/api/vehicles.ts
 import {
   getVehicles,
-  getVehiclesByMillId,
   getVehicleById,
   createVehicle,
   updateVehicle,
@@ -13,11 +12,12 @@ import { Vehicle } from '../../types'; // Pastikan import ini benar
 export const fetchVehicles = async (
   page = 1, 
   limit = 10,
+  search = "",
   userId?: string
 ): Promise<{ data: Vehicle[]; total: number }> => {
   try {
     const offset = (page - 1) * limit;
-    const data = getVehicles(limit, offset, userId);
+    const data = getVehicles(limit, offset, userId, search);
     
     const total = getVehiclesCount();
     

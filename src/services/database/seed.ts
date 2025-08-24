@@ -20,10 +20,10 @@ export const seedInitialData = (): void => {
     const client2Id = uuidv4();
 
     db.exec(`
-      INSERT INTO users (id, email, name, role, millId, password) VALUES
-        ('${adminId}', 'admin@ffb.com', 'System Administrator', 'admin', NULL, 'admin123'),
-        ('${client1Id}', 'client1@mill.com', 'Mill Client 1', 'client', 'mill-1', 'client123'),
-        ('${client2Id}', 'client2@mill.com', 'Mill Client 2', 'client', 'mill-2', 'client123')
+      INSERT INTO users (id, email, name, role, password) VALUES
+        ('${adminId}', 'admin@ffb.com', 'System Administrator', 'admin', 'admin123'),
+        ('${client1Id}', 'client1@mill.com', 'Mill Client 1', 'client', 'client123'),
+        ('${client2Id}', 'client2@mill.com', 'Mill Client 2', 'client', 'client123')
     `);
 
     // --- Mills ---

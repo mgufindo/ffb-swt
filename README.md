@@ -130,7 +130,7 @@ Cakupan MVP:
 Mocking:
 
 - Test komponen mem-mock `services/api/*` (tidak menyentuh DB)
-- Opsi: global mock untuk `services/database/crud/*` di `vitest.setup.ts`
+- Opsi: global mock untuk `services/database/crud/*` di `setupTests.ts`
 - Pastikan path di `vi.mock()` persis sama dengan import pada komponen
 
 Detail lengkap di TESTING.md.
@@ -231,7 +231,7 @@ CI (contoh GitHub Actions):
 ## Troubleshooting
 
 - Test menyentuh DB:
-  - Mock `services/api/*` di suite, atau tambahkan global mocks untuk CRUD di `vitest.setup.ts`.
+  - Mock `services/api/*` di suite, atau tambahkan global mocks untuk CRUD di `setupTests.ts`.
 - Select option assertion gagal:
   - Gunakan `within(select).getByRole("option", { name: /label/i })` dan `userEvent.selectOptions`.
 - JSDOM/timeout:
@@ -240,14 +240,3 @@ CI (contoh GitHub Actions):
   - Konfigurasi alias `@` konsisten di Vite dan Vitest.
 - Port tidak sesuai:
   - Pastikan command menjalankan Vite dengan `--host 0.0.0.0 --port 3000`, terutama di Docker/Compose.
-
-## Kontribusi
-
-- Jaga pemisahan UI dan data access (UI → services/api → database/crud)
-- Sertakan/pertahankan test untuk fitur baru dan bug fix
-- Gunakan query berbasis aksesibilitas di test (getByRole/findByRole)
-- Buat komponen kecil dan komposabel (atoms/molecules/pages)
-
-## Lisensi
-
-Tambahkan lisensi pilihan Anda (mis. MIT).

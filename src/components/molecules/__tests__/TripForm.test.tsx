@@ -13,15 +13,20 @@ vi.mock("../../../hooks/useAuth", () => ({
     logout: vi.fn(),
   }),
 }));
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, within, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import TripForm from "../TripForm";
 
-vi.mock("../../../services/api/vehicles", () => ({
+// Mock API vehicles
+vi.mock("../../services/api/vehicles", () => ({
   fetchVehicles: vi.fn().mockResolvedValue({
     data: [
       {
         id: "v1",
         plateNumber: "B1234XYZ",
         type: "TRUCK",
-        capacity: 12,
+        capacity: 12, // kapasitas kendaraan (tons)
         users: "User A",
         userId: "u1",
         driver: {
@@ -39,49 +44,134 @@ vi.mock("../../../services/api/vehicles", () => ({
   }),
 }));
 
-vi.mock("../../../services/api/mills", () => ({
+// Mock API mills
+vi.mock("../../services/api/mills", () => ({
   fetchMills: vi.fn().mockResolvedValue({
     data: [
-      { id: "m1", name: "Palm Mill A", location: "Somewhere", userId: "u1" },
+      {
+        id: "m1",
+        name: "Palm Mill A",
+        location: "Somewhere",
+        userId: "u1",
+        avgDailyProduction: 5, // opsional, hanya untuk tampilan
+      },
     ],
     total: 1,
   }),
 }));
 
-// PASTIKAN ini sesuai import TripForm (path dan nama fungsi harus sama persis)
-vi.mock("../../../services/api/auth", () => ({
+// Mock API auth/clients
+vi.mock("../../services/api/auth", () => ({
   getAllClient: vi.fn().mockResolvedValue({
-    data: [{ id: "c1", name: "Client A" }],
+    data: [
+      {
+        id: 1,
+        email: "clienta@email.com",
+        name: "Client A",
+        role: "client",
+      },
+    ],
     total: 1,
   }),
   login: vi.fn().mockResolvedValue({ token: "test-token" }),
 }));
 
-import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import TripForm from "../TripForm";
-import { vi, it, expect } from "vitest";
+describe("TripForm", () => {
+  it("shows vehicle, mill, and client options and allows selection", async () => {
+    render(<TripForm onSubmit={() => {}} onCancel={() => {}} />);
 
-it("should show vehicle, mill, and client options", async () => {
-  render(<TripForm onSubmit={() => {}} onCancel={() => {}} />);
+    // Vehicle select berisi opsi B1234XYZ
+    const vehicleSelect = await screen.findByLabelText(/vehicle/i);
+    expect(
+      await within(vehicleSelect).findByRole("option", { name: /B1234XYZ/i })
+    ).toBeInTheDocument();
 
-  // Vehicle
-  const vehicleSelect = await screen.findByLabelText(/vehicle/i);
-  expect(
-    await within(vehicleSelect).findByRole("option", { name: /B1234XYZ/i })
-  ).toBeInTheDocument();
-  await userEvent.selectOptions(vehicleSelect, "v1");
-  expect((vehicleSelect as HTMLSelectElement).value).toBe("v1");
+    await userEvent.selectOptions(vehicleSelect, "v1");
+    expect((vehicleSelect as HTMLSelectElement).value).toBe("v1");
 
-  // Mills
-  expect(await screen.findByText(/Palm Mill A/i)).toBeInTheDocument();
+    // Mill tampil
+    expect(await screen.findByText(/Palm Mill A/i)).toBeInTheDocument();
 
-  // Client
-  const clientSelect = await screen.findByLabelText(/client/i);
-  // Jika masih gagal, samakan mock dengan import TripForm
-  expect(
-    await within(clientSelect).findByRole("option", { name: /Client A/i })
-  ).toBeInTheDocument();
-  await userEvent.selectOptions(clientSelect, "c1");
-  expect((clientSelect as HTMLSelectElement).value).toBe("c1");
+    // Client select berisi Client A
+    const clientSelect = await screen.findByLabelText(/client/i);
+    expect(
+      await within(clientSelect).findByRole("option", { name: /Client A/i })
+    ).toBeInTheDocument();
+
+    await userEvent.selectOptions(clientSelect, "1");
+    expect((clientSelect as HTMLSelectElement).value).toBe("1");
+  });
+
+  it("disables submit and shows error when total weight exceeds vehicle capacity", async () => {
+    render(<TripForm onSubmit={() => {}} onCancel={() => {}} />);
+
+    // Pilih vehicle
+    const vehicleSelect = await screen.findByLabelText(/vehicle/i);
+    await userEvent.selectOptions(vehicleSelect, "v1");
+
+    // Pilih satu mill (gunakan getByLabelText agar lebih robust terhadap nama aksesibel)
+    const millCheckbox = await screen.findByLabelText(/Palm Mill A/i);
+    await userEvent.click(millCheckbox);
+
+    // Input weight > capacity (capacity=12) -> 13
+    const weightInput = await screen.findByLabelText(/Weight:/i);
+    fireEvent.change(weightInput, { target: { value: "13" } });
+
+    // Isi field lain (agar form valid selain kapasitas)
+    const dtInput = await screen.findByLabelText(/Scheduled Date & Time/i);
+    fireEvent.change(dtInput, { target: { value: "2025-12-31T12:00" } });
+
+    const durationInput = await screen.findByLabelText(
+      /Estimated Duration \(minutes\)/i
+    );
+    fireEvent.change(durationInput, { target: { value: "60" } });
+
+    const clientSelect = await screen.findByLabelText(/client/i);
+    await userEvent.selectOptions(clientSelect, "1");
+
+    // Tombol submit disabled dan pesan error muncul
+    const submitBtn = screen.getByRole("button", { name: /Create\s*Trip/i });
+    expect(submitBtn).toBeDisabled();
+
+    expect(
+      screen.getByText(/Total weight exceeds vehicle capacity/i)
+    ).toBeInTheDocument();
+  });
+
+  it("submits when within capacity and required fields are filled", async () => {
+    const onSubmit = vi.fn();
+    render(<TripForm onSubmit={onSubmit} onCancel={() => {}} />);
+
+    // Pilih vehicle
+    const vehicleSelect = await screen.findByLabelText(/vehicle/i);
+    await userEvent.selectOptions(vehicleSelect, "v1");
+
+    // Pilih mill via label
+    const millCheckbox = await screen.findByLabelText(/Palm Mill A/i);
+    await userEvent.click(millCheckbox);
+
+    // Weight <= capacity (10 <= 12)
+    const weightInput = await screen.findByLabelText(/Weight:/i);
+    fireEvent.change(weightInput, { target: { value: "10" } });
+
+    // Isi tanggal & durasi
+    const dtInput = await screen.findByLabelText(/Scheduled Date & Time/i);
+    fireEvent.change(dtInput, { target: { value: "2025-12-31T12:00" } });
+
+    const durationInput = await screen.findByLabelText(
+      /Estimated Duration \(minutes\)/i
+    );
+    fireEvent.change(durationInput, { target: { value: "45" } });
+
+    // Pilih client (admin)
+    const clientSelect = await screen.findByLabelText(/client/i);
+    await userEvent.selectOptions(clientSelect, "1");
+
+    // Submit
+    const submitBtn = screen.getByRole("button", { name: /Create\s*Trip/i });
+    expect(submitBtn).not.toBeDisabled();
+    await userEvent.click(submitBtn);
+
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+  });
 });

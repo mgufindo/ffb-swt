@@ -205,5 +205,5 @@ export function getAllClients(params?: FetchClientsParams): Client[];
 ## Mocking (tests)
 
 - Mock API adapters in component tests (preferred).
-- Alternatively, globally mock CRUD modules in `vitest.setup.ts` to guarantee no DB calls.
+- Alternatively, globally mock CRUD modules in `setupTests.ts` to guarantee no DB calls.
 - Ensure mock module path exactly matches the import used in components.

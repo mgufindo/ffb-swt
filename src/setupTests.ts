@@ -1,10 +1,11 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import { vi } from "vitest";
+
 vi.mock("./services/database/config", () => ({
   initializeDatabase: vi.fn(),
   getDatabase: vi.fn(() => ({
     prepare: vi.fn(() => ({
-      bind: vi.fn(), // <--- WAJIB ADA!
+      bind: vi.fn(),
       get: vi.fn(),
       all: vi.fn(() => [
         {
@@ -47,6 +48,7 @@ vi.mock("./services/database/config", () => ({
   })),
 }));
 
+// Vehicles CRUD mock (varian 1)
 vi.mock("./services/database/crud/vehicles", () => ({
   getVehicles: vi.fn(() => [
     {
@@ -74,7 +76,7 @@ vi.mock("./services/database/crud/vehicles", () => ({
   deleteVehicle: vi.fn(),
 }));
 
-// Jika kamu belum pakai alias "@", kamu bisa juga tambah mock dengan path relatif absolut:
+// Vehicles CRUD mock (varian 2)
 vi.mock("./src/services/database/crud/vehicles", () => ({
   getVehicles: vi.fn(() => [
     {
@@ -100,4 +102,134 @@ vi.mock("./src/services/database/crud/vehicles", () => ({
   createVehicle: vi.fn(),
   updateVehicle: vi.fn(),
   deleteVehicle: vi.fn(),
+}));
+
+// Mills CRUD mock (varian 1) — row format with lat/lng (string) to match mapper
+vi.mock("./services/database/crud/mills", () => ({
+  getMills: vi.fn(() => [
+    {
+      id: "m1",
+      name: "Palm Mill A",
+      lat: "-6.2000",
+      lng: "106.8000",
+      contactPerson: "Jane Doe",
+      phoneNumber: "081234567890",
+      avgDailyProduction: 5,
+      userId: "u1",
+    },
+    {
+      id: "m2",
+      name: "Palm Mill B",
+      lat: "-6.3000",
+      lng: "106.9000",
+      contactPerson: "Budi",
+      phoneNumber: "081298765432",
+      avgDailyProduction: 7.5,
+      userId: "u1",
+    },
+  ]),
+  getMillsCount: vi.fn(() => 2),
+  getMillById: vi.fn(),
+  createMill: vi.fn(),
+  updateMill: vi.fn(),
+  deleteMill: vi.fn(),
+}));
+
+// Mills CRUD mock (varian 2)
+vi.mock("./src/services/database/crud/mills", () => ({
+  getMills: vi.fn(() => [
+    {
+      id: "m1",
+      name: "Palm Mill A",
+      lat: "-6.2000",
+      lng: "106.8000",
+      contactPerson: "Jane Doe",
+      phoneNumber: "081234567890",
+      avgDailyProduction: 5,
+      userId: "u1",
+    },
+    {
+      id: "m2",
+      name: "Palm Mill B",
+      lat: "-6.3000",
+      lng: "106.9000",
+      contactPerson: "Budi",
+      phoneNumber: "081298765432",
+      avgDailyProduction: 7.5,
+      userId: "u1",
+    },
+  ]),
+  getMillsCount: vi.fn(() => 2),
+  getMillById: vi.fn(),
+  createMill: vi.fn(),
+  updateMill: vi.fn(),
+  deleteMill: vi.fn(),
+}));
+
+// ===== Users/Clients CRUD mock (berdasarkan mapping "users.push({...})") =====
+
+// Varian 1 (tanpa prefix src)
+vi.mock("./services/database/crud/auth", () => ({
+  // Kembalikan "row" ala DB; mapper di layer atas akan mengubah ke shape final
+  getUsers: vi.fn(() => [
+    {
+      id: 1,
+      email: "clienta@email.com",
+      name: "Client A",
+      role: "client",
+    },
+    {
+      id: 2,
+      email: "admin@email.com",
+      name: "Admin User",
+      role: "admin",
+    },
+  ]),
+  getUsersCount: vi.fn(() => 2),
+  getUserById: vi.fn(),
+  createUser: vi.fn(),
+  updateUser: vi.fn(),
+  deleteUser: vi.fn(),
+  // Jika ada helper spesifik untuk clients
+  getAllClients: vi.fn(() => [
+    {
+      id: 1,
+      email: "clienta@email.com",
+      name: "Client A",
+      role: "client",
+    },
+  ]),
+  getClientsCount: vi.fn(() => 1),
+}));
+
+// Varian 2 (dengan prefix src)
+vi.mock("./src/services/database/crud/auth", () => ({
+  getUsers: vi.fn(() => [
+    {
+      id: 1,
+      email: "clienta@email.com",
+      name: "Client A",
+      role: "client",
+    },
+    {
+      id: 2,
+      email: "admin@email.com",
+      name: "Admin User",
+      role: "admin",
+    },
+  ]),
+  getUsersCount: vi.fn(() => 2),
+  getUserById: vi.fn(),
+  createUser: vi.fn(),
+  updateUser: vi.fn(),
+  deleteUser: vi.fn(),
+  getAllClients: vi.fn(() => [
+    {
+      id: 1,
+      email: "clienta@email.com",
+      name: "Client A",
+      role: "client",
+    },
+  ]),
+  getClientsCount: vi.fn(() => 1),
 }));

@@ -11,7 +11,7 @@ This app uses Vitest + Testing Library for fast, deterministic unit/integration 
 - Vitest (test runner)
 - @testing-library/react, @testing-library/dom, @testing-library/user-event
 - jsdom (DOM environment)
-- Optional: `vitest.setup.ts` for global mocks and test environment tweaks
+- Optional: `setupTests.ts` for global mocks and test environment tweaks
 
 Run tests:
 
@@ -42,13 +42,13 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    setupFiles: ["./vitest.setup.ts"],
+    setupFiles: ["./setupTests.ts"],
   },
 });
 ```
 
 ```ts
-// vitest.setup.ts
+// setupTests.ts
 import { vi } from "vitest";
 
 // Example global mocks to block DB access in tests.

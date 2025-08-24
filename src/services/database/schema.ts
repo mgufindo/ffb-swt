@@ -16,7 +16,6 @@ export const initDatabaseSchema = (): void => {
       email TEXT UNIQUE NOT NULL,
       name TEXT NOT NULL,
       role TEXT NOT NULL CHECK(role IN ('admin', 'client')),
-      millId TEXT,
       password TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
