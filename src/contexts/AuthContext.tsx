@@ -55,7 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string): Promise<void> => {
     setLoading(true);
     setError(null);
-
+    localStorage.removeItem("errorLogin");
     try {
       const userData = await loginUser(email, password);
       setUser(userData);
@@ -69,6 +69,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(userWithTimestamp));
       console.log("User logged in and saved to localStorage");
     } catch (err: any) {
+      localStorage.setItem("errorLogin", JSON.stringify(err.message));
       setError(err.message);
       throw err;
     } finally {

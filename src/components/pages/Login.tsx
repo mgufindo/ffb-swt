@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -10,6 +10,13 @@ const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const errorLogin = localStorage.getItem("errorLogin");
+    if (errorLogin) {
+      setError(JSON.parse(errorLogin));
+    }
+  }, []);
+
   const from = "/dashboard/analytics";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,11 +26,12 @@ const Login: React.FC = () => {
 
     try {
       await login(email, password);
-      navigate(from, { replace: true });
-    } catch (err: any) {
-      setError(err.message || "Login failed");
-    } finally {
       setLoading(false);
+      navigate(from, { replace: true });
+      return;
+    } catch {
+      setLoading(false);
+      return; // selesai, tidak ada aksi lain
     }
   };
 
